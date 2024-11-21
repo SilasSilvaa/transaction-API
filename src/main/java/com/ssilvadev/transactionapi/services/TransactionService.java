@@ -3,11 +3,14 @@ package com.ssilvadev.transactionapi.services;
 import com.ssilvadev.transactionapi.domain.dtos.TransactionDTO;
 import com.ssilvadev.transactionapi.domain.entities.Transaction;
 import com.ssilvadev.transactionapi.repositories.TransactionRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class TransactionService implements ITransactionService {
 
     @Autowired
@@ -15,7 +18,10 @@ public class TransactionService implements ITransactionService {
 
     @Override
     public Transaction save(TransactionDTO transactionDTO) {
-        return null;
+        Transaction transaction = new Transaction();
+        BeanUtils.copyProperties(transactionDTO, transaction);
+
+        return transactionRepository.save(transaction);
     }
 
     @Override
