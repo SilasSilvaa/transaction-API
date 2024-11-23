@@ -11,5 +11,4 @@ public interface ITransactionService {
     List<Transaction> findAll();
     Transaction findById(UUID id);
     Transaction update(UUID id, TransactionDTO transactionDTO);
-    void delete(UUID id);
 }
